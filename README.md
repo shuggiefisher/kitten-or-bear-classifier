@@ -7,7 +7,7 @@ an example of how to train a classifier on imagenet features.  The features
 are the activity of the penultimate layer of a convolutional neural network trained
 on the imagenet database.
 
-to run the pipeline:
+to execute the pipeline:
 
 ```brain4k local-path-to-this-repo```
 
@@ -15,6 +15,7 @@ to run the pipeline:
 - brain4k
 - caffe, including python wrappers
 - scikit-learn
+- matplotlib
 
 Installing caffe is quite involved, so you may find it easier to use a
 [caffe docker image](https://registry.hub.docker.com/u/tleyden5iwx/caffe/)
@@ -24,7 +25,7 @@ Installing caffe is quite involved, so you may find it easier to use a
 # Pipeline performance metrics
 
 
-![Confusion Matrix Caption](/Users/rob/Sites/brain4k/4ks/cat-or-dog-classifier/./metrics/figures/image_classifier_confusion.png)
+![Confusion Matrix Caption](metrics/figures/image_classifier_confusion.png)
 
 Confusion matrix:
 [[2270  187]

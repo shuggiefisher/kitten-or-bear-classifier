@@ -13,18 +13,18 @@
             "transform_type": "org.berkeleyvision.caffe.bvlc_caffenet", 
             "parameters": {
                 "output_keys": {
-                    "processed_urls": {
-                        "dtype": "S500", 
-                        "shape": [
-                            ":", 
-                            1
-                        ]
-                    }, 
                     "fc7": {
                         "dtype": "f4", 
                         "shape": [
                             ":", 
                             4096
+                        ]
+                    }, 
+                    "processed_urls": {
+                        "dtype": "S500", 
+                        "shape": [
+                            ":", 
+                            1
                         ]
                     }
                 }
@@ -39,24 +39,6 @@
         "labels_features_join": {
             "transform_type": "com.brain4k.transforms.data_join", 
             "parameters": {
-                "left_on": "processed_urls", 
-                "output_keys": {
-                    "label": {
-                        "dtype": "i2", 
-                        "shape": [
-                            25000, 
-                            1
-                        ]
-                    }, 
-                    "fc7": {
-                        "dtype": "f4", 
-                        "shape": [
-                            25000, 
-                            4096
-                        ]
-                    }
-                }, 
-                "right_on": "url", 
                 "retain_keys": {
                     "right": [
                         "label"
@@ -64,7 +46,25 @@
                     "left": [
                         "fc7"
                     ]
-                }
+                }, 
+                "output_keys": {
+                    "fc7": {
+                        "dtype": "f4", 
+                        "shape": [
+                            25000, 
+                            4096
+                        ]
+                    }, 
+                    "label": {
+                        "dtype": "i2", 
+                        "shape": [
+                            25000, 
+                            1
+                        ]
+                    }
+                }, 
+                "left_on": "processed_urls", 
+                "right_on": "url"
             }
         }, 
         "data_splitter": {
@@ -141,7 +141,7 @@
                 "image_classifier_test_results", 
                 "class_labels"
             ], 
-            "sha1": "697ba1492ac65d07509f2c4d81fb239ecea3e3eb", 
+            "sha1": "81c87513b21311788b08e54d8518fa34d6317367", 
             "transform": "image_classifier_confusion", 
             "actions": [
                 "plot"
@@ -181,13 +181,13 @@
             "local_filename": "image_classifier_confusion.png", 
             "data_type": "figure"
         }, 
-        "image_classifier": {
-            "local_filename": "image_classifier.pkl", 
-            "data_type": "pickle"
-        }, 
         "images": {
             "local_filename": "cats_and_dogs_train.csv", 
             "data_type": "csv"
+        }, 
+        "caffe_mean": {
+            "url": "https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_mean.npy", 
+            "sha1": "8284f7ac12f5b0f6d5069c1fac00d8e0ba647b2f"
         }, 
         "deploy.prototxt": {
             "url": "https://raw.githubusercontent.com/BVLC/caffe/master/models/bvlc_reference_caffenet/deploy.prototxt", 
@@ -197,9 +197,9 @@
             "local_filename": "image_classifier_confusion.md", 
             "data_type": "markdown"
         }, 
-        "caffe_mean": {
-            "url": "https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_mean.npy", 
-            "sha1": "8284f7ac12f5b0f6d5069c1fac00d8e0ba647b2f"
+        "image_classifier": {
+            "local_filename": "image_classifier.pkl", 
+            "data_type": "pickle"
         }
     }
 }
