@@ -9,7 +9,10 @@ on the imagenet database.
 
 to execute the pipeline:
 
-```brain4k local-path-to-this-repo```
+```
+git clone https://github.com/shuggiefisher/cat-or-dog-classifier.git local-path-to-this-repo
+brain4k local-path-to-this-repo
+```
 
 ### Requirements
 - brain4k
