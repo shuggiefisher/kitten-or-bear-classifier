@@ -13,18 +13,18 @@
             "transform_type": "org.berkeleyvision.caffe.bvlc_caffenet", 
             "parameters": {
                 "output_keys": {
-                    "fc7": {
-                        "dtype": "f4", 
-                        "shape": [
-                            ":", 
-                            4096
-                        ]
-                    }, 
                     "processed_urls": {
                         "dtype": "S500", 
                         "shape": [
                             ":", 
                             1
+                        ]
+                    }, 
+                    "fc7": {
+                        "dtype": "f4", 
+                        "shape": [
+                            ":", 
+                            4096
                         ]
                     }
                 }
@@ -39,6 +39,7 @@
         "labels_features_join": {
             "transform_type": "com.brain4k.transforms.data_join", 
             "parameters": {
+                "right_on": "url", 
                 "retain_keys": {
                     "right": [
                         "label"
@@ -47,24 +48,23 @@
                         "fc7"
                     ]
                 }, 
+                "left_on": "processed_urls", 
                 "output_keys": {
-                    "fc7": {
-                        "dtype": "f4", 
-                        "shape": [
-                            185, 
-                            4096
-                        ]
-                    }, 
                     "label": {
                         "dtype": "i2", 
                         "shape": [
                             185, 
                             1
                         ]
+                    }, 
+                    "fc7": {
+                        "dtype": "f4", 
+                        "shape": [
+                            185, 
+                            4096
+                        ]
                     }
-                }, 
-                "left_on": "processed_urls", 
-                "right_on": "url"
+                }
             }
         }, 
         "data_splitter": {
@@ -181,13 +181,13 @@
             "local_filename": "image_classifier_confusion.png", 
             "data_type": "figure"
         }, 
+        "image_classifier": {
+            "local_filename": "image_classifier.pkl", 
+            "data_type": "pickle"
+        }, 
         "images": {
             "local_filename": "bear_vs_kitten.csv", 
             "data_type": "csv"
-        }, 
-        "caffe_mean": {
-            "url": "https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_mean.npy", 
-            "sha1": "8284f7ac12f5b0f6d5069c1fac00d8e0ba647b2f"
         }, 
         "deploy.prototxt": {
             "url": "https://raw.githubusercontent.com/BVLC/caffe/master/models/bvlc_reference_caffenet/deploy.prototxt", 
@@ -197,9 +197,9 @@
             "local_filename": "image_classifier_confusion.md", 
             "data_type": "markdown"
         }, 
-        "image_classifier": {
-            "local_filename": "image_classifier.pkl", 
-            "data_type": "pickle"
+        "caffe_mean": {
+            "url": "https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_mean.npy", 
+            "sha1": "8284f7ac12f5b0f6d5069c1fac00d8e0ba647b2f"
         }
     }
 }

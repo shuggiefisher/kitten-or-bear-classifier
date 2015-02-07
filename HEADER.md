@@ -10,7 +10,7 @@ to execute the pipeline within an docker container:
 ```
 sudo docker run -ti tleyden5iwx/caffe-cpu-master /bin/bash
 pip install git+https://github.com/shuggiefisher/brain4k.git
-git clone https://github.com/shuggiefisher/cat-or-dog-classifier.git local-path-to-this-repo
+git clone https://github.com/shuggiefisher/kitten-or-bear-classifier.git local-path-to-this-repo
 brain4k local-path-to-this-repo
 ```
 
