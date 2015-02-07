@@ -51,14 +51,14 @@
                     "fc7": {
                         "dtype": "f4", 
                         "shape": [
-                            25000, 
+                            185, 
                             4096
                         ]
                     }, 
                     "label": {
                         "dtype": "i2", 
                         "shape": [
-                            25000, 
+                            185, 
                             1
                         ]
                     }
@@ -85,7 +85,7 @@
             "accept_variance_in": [
                 "image_features"
             ], 
-            "sha1": "f6339448fc19e624607a843ae6ec25bb0acaf3dd", 
+            "sha1": "5795ce217fbcc9ef405ec6b8fac304fff4b234da", 
             "outputs": [
                 "image_features"
             ], 
@@ -99,7 +99,7 @@
                 "image_features", 
                 "images"
             ], 
-            "sha1": "df932ac7e9f2ce7bb91d4e5f5be1e7d735347c3f", 
+            "sha1": "e2c349d75c99c44c0e9892a6122aabe966e77c43", 
             "transform": "labels_features_join", 
             "actions": [
                 "join"
@@ -112,7 +112,7 @@
             "inputs": [
                 "features_and_labels"
             ], 
-            "sha1": "e268b4409bd6b653d4c801feb9bf38c978d90a7a", 
+            "sha1": "62f867ef59ab79f3e65bad4dfe78388e94295002", 
             "transform": "data_splitter", 
             "actions": [
                 "split"
@@ -125,7 +125,7 @@
             "inputs": [
                 "test_train_features"
             ], 
-            "sha1": "c91ab23308e423cc66f9c1a54c4c7de52b8295f4", 
+            "sha1": "6c4b7861413114dc9362304fc68d469df0d8f40b", 
             "transform": "naive_bayes_classifier", 
             "actions": [
                 "train", 
@@ -141,7 +141,7 @@
                 "image_classifier_test_results", 
                 "class_labels"
             ], 
-            "sha1": "81c87513b21311788b08e54d8518fa34d6317367", 
+            "sha1": "7a6c17bd1f6483269b6e02496b83b42295a8a8c2", 
             "transform": "image_classifier_confusion", 
             "actions": [
                 "plot"
@@ -182,7 +182,7 @@
             "data_type": "figure"
         }, 
         "images": {
-            "local_filename": "cats_and_dogs_train.csv", 
+            "local_filename": "bear_vs_kitten.csv", 
             "data_type": "csv"
         }, 
         "caffe_mean": {
