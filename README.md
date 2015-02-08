@@ -7,7 +7,7 @@ an example of how to train a classifier on imagenet features.  The features
 are the activity of the penultimate layer of a convolutional neural network trained
 on the imagenet database.
 
-to execute the pipeline within an docker container:
+to execute the pipeline within a docker container:
 
 ```
 sudo docker run -ti tleyden5iwx/caffe-cpu-master /bin/bash
@@ -27,11 +27,19 @@ Installing caffe is quite involved, so you may find it easier to use a
 
 
 
+
+
+# The Pipeline
+
+![Pipeline diagram](http://goo.gl/yxOxI9)
+
+
 # Pipeline performance metrics
 
 
 ![Confusion Matrix Caption](metrics/figures/image_classifier_confusion.png)
 
 Confusion matrix:
-[[ 9  4]
- [13 11]]
+
+[[12 11]
+ [ 8  6]]
