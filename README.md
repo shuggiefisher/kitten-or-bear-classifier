@@ -1,5 +1,12 @@
 
 
+
+
+# The Pipeline
+
+![Pipeline diagram](http://goo.gl/yxOxI9)
+
+
 ## Kitten vs bear classifier
 
 This repo contains a [brain4k](https://github.com/shuggiefisher/brain4k) pipeline for a kitten-or-bear classifier.  It is intended to serve as
@@ -25,13 +32,6 @@ brain4k local-path-to-this-repo
 Installing caffe is quite involved, so you may find it easier to use a
 [caffe docker image](https://registry.hub.docker.com/u/tleyden5iwx/caffe/)
 
-
-
-
-
-# The Pipeline
-
-![Pipeline diagram](http://goo.gl/yxOxI9)
 
 
 # Pipeline performance metrics
