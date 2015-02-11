@@ -1,204 +1,204 @@
 {
     "metrics": [
-        "image_classifier_confusion"
-    ], 
-    "version": 1, 
+        "Confusion matrix"
+    ],
+    "version": 1,
     "transforms": {
-        "imagenet": {
+        "Neural network pretrained on imagenet": {
             "files": {
-                "weights": "caffe_weights", 
-                "prototxt": "deploy.prototxt", 
-                "mean": "caffe_mean"
-            }, 
-            "transform_type": "org.berkeleyvision.caffe.bvlc_caffenet", 
+                "weights": "pretrained network weights",
+                "prototxt": "caffe deploy.prototxt",
+                "mean": "Imagenet mean image"
+            },
+            "transform_type": "org.berkeleyvision.caffe.bvlc_caffenet",
             "parameters": {
                 "output_keys": {
                     "processed_urls": {
-                        "dtype": "S500", 
+                        "dtype": "S500",
                         "shape": [
-                            ":", 
+                            ":",
                             1
                         ]
-                    }, 
+                    },
                     "fc7": {
-                        "dtype": "f4", 
+                        "dtype": "f4",
                         "shape": [
-                            ":", 
+                            ":",
                             4096
                         ]
                     }
                 }
             }
-        }, 
-        "naive_bayes_classifier": {
+        },
+        "Multinomial Naive Bayes Classifier": {
             "transform_type": "org.scikit-learn.naive_bayes.MultinomialNB"
-        }, 
+        },
         "image_classifier_confusion": {
             "transform_type": "org.scikit-learn.metrics.confusion_matrix"
-        }, 
-        "labels_features_join": {
-            "transform_type": "com.brain4k.transforms.data_join", 
+        },
+        "Join image labels and extracted features": {
+            "transform_type": "com.brain4k.transforms.data_join",
             "parameters": {
-                "right_on": "url", 
+                "right_on": "url",
                 "retain_keys": {
                     "right": [
                         "label"
-                    ], 
+                    ],
                     "left": [
                         "fc7"
                     ]
-                }, 
-                "left_on": "processed_urls", 
+                },
+                "left_on": "processed_urls",
                 "output_keys": {
                     "label": {
-                        "dtype": "i2", 
+                        "dtype": "i2",
                         "shape": [
-                            185, 
+                            185,
                             1
                         ]
-                    }, 
+                    },
                     "fc7": {
-                        "dtype": "f4", 
+                        "dtype": "f4",
                         "shape": [
-                            185, 
+                            185,
                             4096
                         ]
                     }
                 }
             }
-        }, 
-        "data_splitter": {
-            "version": 1, 
-            "transform_type": "org.scikit-learn.cross_validation.test_train_split", 
+        },
+        "Split into test and training set": {
+            "version": 1,
+            "transform_type": "org.scikit-learn.cross_validation.test_train_split",
             "parameters": {
-                "test_size": 0.2, 
-                "data": "fc7", 
+                "test_size": 0.2,
+                "data": "fc7",
                 "target": "label"
             }
         }
-    }, 
+    },
     "stages": [
         {
             "inputs": [
-                "images"
-            ], 
+                "kitten-or-bear images"
+            ],
             "accept_variance_in": [
-                "image_features"
-            ], 
-            "sha1": "5795ce217fbcc9ef405ec6b8fac304fff4b234da", 
+                "Extracted image features"
+            ],
+            "sha1": "5795ce217fbcc9ef405ec6b8fac304fff4b234da",
             "outputs": [
-                "image_features"
-            ], 
-            "transform": "imagenet", 
+                "Extracted image features"
+            ],
+            "transform": "Neural network pretrained on imagenet",
             "actions": [
                 "predict"
             ]
-        }, 
+        },
         {
             "inputs": [
-                "image_features", 
-                "images"
-            ], 
-            "sha1": "e2c349d75c99c44c0e9892a6122aabe966e77c43", 
-            "transform": "labels_features_join", 
+                "Extracted image features",
+                "kitten-or-bear images"
+            ],
+            "sha1": "e2c349d75c99c44c0e9892a6122aabe966e77c43",
+            "transform": "Join image labels and extracted features",
             "actions": [
                 "join"
-            ], 
+            ],
             "outputs": [
-                "features_and_labels"
+                "Image features and ground truth labels"
             ]
-        }, 
+        },
         {
             "inputs": [
-                "features_and_labels"
-            ], 
-            "sha1": "62f867ef59ab79f3e65bad4dfe78388e94295002", 
-            "transform": "data_splitter", 
+                "Image features and ground truth labels"
+            ],
+            "sha1": "62f867ef59ab79f3e65bad4dfe78388e94295002",
+            "transform": "Split into test and training set",
             "actions": [
                 "split"
-            ], 
+            ],
             "outputs": [
-                "test_train_features"
+                "Test and Training image features"
             ]
-        }, 
+        },
         {
             "inputs": [
-                "test_train_features"
-            ], 
-            "sha1": "6c4b7861413114dc9362304fc68d469df0d8f40b", 
-            "transform": "naive_bayes_classifier", 
+                "Test and Training image features"
+            ],
+            "sha1": "6c4b7861413114dc9362304fc68d469df0d8f40b",
+            "transform": "Multinomial Naive Bayes Classifier",
             "actions": [
-                "train", 
+                "train",
                 "test"
-            ], 
+            ],
             "outputs": [
-                "image_classifier", 
-                "image_classifier_test_results"
+                "kitten-or-bear classifier",
+                "Image classifier test results"
             ]
-        }, 
+        },
         {
             "inputs": [
-                "image_classifier_test_results", 
-                "class_labels"
-            ], 
-            "sha1": "7a6c17bd1f6483269b6e02496b83b42295a8a8c2", 
-            "transform": "image_classifier_confusion", 
+                "Image classifier test results",
+                "Image ground truth labels"
+            ],
+            "sha1": "7a6c17bd1f6483269b6e02496b83b42295a8a8c2",
+            "transform": "Confusion matrix",
             "actions": [
                 "plot"
-            ], 
+            ],
             "outputs": [
-                "image_classifier_confusion_graph", 
-                "image_classifier_confusion"
+                "Image classifier confusion graph",
+                "Image classifier confusion metric"
             ]
         }
-    ], 
+    ],
     "data": {
-        "image_features": {
-            "local_filename": "image_features.hdf5", 
+        "Extracted image features": {
+            "local_filename": "image_features.hdf5",
             "data_type": "hdf5"
-        }, 
-        "test_train_features": {
-            "local_filename": "test_train_features.hdf5", 
+        },
+        "Test and Training image features": {
+            "local_filename": "test_train_features.hdf5",
             "data_type": "hdf5"
-        }, 
-        "caffe_weights": {
-            "url": "http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel", 
+        },
+        "pretrained network weights": {
+            "url": "http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel",
             "sha1": "4c8d77deb20ea792f84eb5e6d0a11ca0a8660a46"
-        }, 
-        "image_classifier_test_results": {
-            "local_filename": "image_classifier_test_results.hdf5", 
+        },
+        "Image classifier test results": {
+            "local_filename": "image_classifier_test_results.hdf5",
             "data_type": "hdf5"
-        }, 
-        "features_and_labels": {
-            "local_filename": "features_and_labels.hdf5", 
+        },
+        "Image features and ground truth labels": {
+            "local_filename": "features_and_labels.hdf5",
             "data_type": "hdf5"
-        }, 
-        "class_labels": {
-            "local_filename": "labels.csv", 
+        },
+        "Image ground truth labels": {
+            "local_filename": "labels.csv",
             "data_type": "csv"
-        }, 
-        "image_classifier_confusion_graph": {
-            "local_filename": "image_classifier_confusion.png", 
+        },
+        "Image classifier confusion graph": {
+            "local_filename": "image_classifier_confusion.png",
             "data_type": "figure"
-        }, 
-        "image_classifier": {
-            "local_filename": "image_classifier.pkl", 
+        },
+        "kitten-or-bear classifier": {
+            "local_filename": "image_classifier.pkl",
             "data_type": "pickle"
-        }, 
-        "images": {
-            "local_filename": "bear_vs_kitten.csv", 
+        },
+        "kitten-or-bear images": {
+            "local_filename": "bear_vs_kitten.csv",
             "data_type": "csv"
-        }, 
-        "deploy.prototxt": {
-            "url": "https://raw.githubusercontent.com/BVLC/caffe/master/models/bvlc_reference_caffenet/deploy.prototxt", 
+        },
+        "caffe deploy.prototxt": {
+            "url": "https://raw.githubusercontent.com/BVLC/caffe/master/models/bvlc_reference_caffenet/deploy.prototxt",
             "sha1": "d927168d1f2c9e32ff50ff1a69aacb775b00bd0c"
-        }, 
-        "image_classifier_confusion": {
-            "local_filename": "image_classifier_confusion.md", 
+        },
+        "Image classifier confusion metric": {
+            "local_filename": "image_classifier_confusion.md",
             "data_type": "markdown"
-        }, 
-        "caffe_mean": {
-            "url": "https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_mean.npy", 
+        },
+        "Imagenet mean image": {
+            "url": "https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_mean.npy",
             "sha1": "8284f7ac12f5b0f6d5069c1fac00d8e0ba647b2f"
         }
     }
