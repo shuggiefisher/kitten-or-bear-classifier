@@ -33,7 +33,7 @@
         "Multinomial Naive Bayes Classifier": {
             "transform_type": "org.scikit-learn.naive_bayes.MultinomialNB"
         },
-        "image_classifier_confusion": {
+        "Confusion matrix": {
             "transform_type": "org.scikit-learn.metrics.confusion_matrix"
         },
         "Join image labels and extracted features": {
