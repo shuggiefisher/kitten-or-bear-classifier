@@ -37,7 +37,7 @@ Installing caffe is quite involved, so you may find it easier to use a
 # Pipeline performance metrics
 
 
-![Confusion Matrix Caption](kitten-or-bear-classifier/metrics/figures/image_classifier_confusion.png)
+![Confusion Matrix Caption](metrics/figures/image_classifier_confusion.png)
 
 Confusion matrix:
 
