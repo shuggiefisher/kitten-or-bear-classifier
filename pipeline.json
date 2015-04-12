@@ -77,81 +77,83 @@
             }
         }
     },
-    "stages": [
-        {
-            "inputs": [
-                "kitten-or-bear images"
-            ],
-            "accept_variance_in": [
-                "Extracted image features"
-            ],
-            "sha1": "5795ce217fbcc9ef405ec6b8fac304fff4b234da",
-            "outputs": [
-                "Extracted image features"
-            ],
-            "transform": "Neural network pretrained on imagenet",
-            "actions": [
-                "predict"
-            ]
-        },
-        {
-            "inputs": [
-                "Extracted image features",
-                "kitten-or-bear images"
-            ],
-            "sha1": "c700d87bd6b7e4d191eed0c8bcad60ebfc18cbd8",
-            "transform": "Join image labels and extracted features",
-            "actions": [
-                "join"
-            ],
-            "outputs": [
-                "Image features and ground truth labels"
-            ]
-        },
-        {
-            "inputs": [
-                "Image features and ground truth labels"
-            ],
-            "sha1": "f7da6e5a64287f492af6f5bbdbb6410d4e80faae",
-            "transform": "Split into test and training set",
-            "actions": [
-                "split"
-            ],
-            "outputs": [
-                "Test and Training image features"
-            ]
-        },
-        {
-            "inputs": [
-                "Test and Training image features"
-            ],
-            "sha1": "760a15e0d562999997ef1b0f5a8bf4c1cbcf7b58",
-            "transform": "Multinomial Naive Bayes Classifier",
-            "actions": [
-                "train",
-                "test"
-            ],
-            "outputs": [
-                "kitten-or-bear classifier",
-                "Image classifier test results"
-            ]
-        },
-        {
-            "inputs": [
-                "Image classifier test results",
-                "Image ground truth labels"
-            ],
-            "sha1": "67063fa11d8f79b90f38c87f5e9e896aec876af3",
-            "transform": "Confusion matrix",
-            "actions": [
-                "plot"
-            ],
-            "outputs": [
-                "Image classifier confusion graph",
-                "Image classifier confusion metric"
-            ]
-        }
-    ],
+    "stages": {
+        "train": [
+            {
+                "inputs": [
+                    "kitten-or-bear images"
+                ],
+                "accept_variance_in": [
+                    "Extracted image features"
+                ],
+                "sha1": "5795ce217fbcc9ef405ec6b8fac304fff4b234da",
+                "outputs": [
+                    "Extracted image features"
+                ],
+                "transform": "Neural network pretrained on imagenet",
+                "actions": [
+                    "predict"
+                ]
+            },
+            {
+                "inputs": [
+                    "Extracted image features",
+                    "kitten-or-bear images"
+                ],
+                "sha1": "c700d87bd6b7e4d191eed0c8bcad60ebfc18cbd8",
+                "transform": "Join image labels and extracted features",
+                "actions": [
+                    "join"
+                ],
+                "outputs": [
+                    "Image features and ground truth labels"
+                ]
+            },
+            {
+                "inputs": [
+                    "Image features and ground truth labels"
+                ],
+                "sha1": "f7da6e5a64287f492af6f5bbdbb6410d4e80faae",
+                "transform": "Split into test and training set",
+                "actions": [
+                    "split"
+                ],
+                "outputs": [
+                    "Test and Training image features"
+                ]
+            },
+            {
+                "inputs": [
+                    "Test and Training image features"
+                ],
+                "sha1": "760a15e0d562999997ef1b0f5a8bf4c1cbcf7b58",
+                "transform": "Multinomial Naive Bayes Classifier",
+                "actions": [
+                    "train",
+                    "test"
+                ],
+                "outputs": [
+                    "kitten-or-bear classifier",
+                    "Image classifier test results"
+                ]
+            },
+            {
+                "inputs": [
+                    "Image classifier test results",
+                    "Image ground truth labels"
+                ],
+                "sha1": "67063fa11d8f79b90f38c87f5e9e896aec876af3",
+                "transform": "Confusion matrix",
+                "actions": [
+                    "plot"
+                ],
+                "outputs": [
+                    "Image classifier confusion graph",
+                    "Image classifier confusion metric"
+                ]
+            }
+        ],
+    },
     "data": {
         "Image ground truth labels": {
             "local_filename": "labels.csv",
