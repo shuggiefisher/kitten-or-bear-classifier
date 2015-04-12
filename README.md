@@ -4,7 +4,7 @@
 
 # The Pipeline
 
-![Pipeline diagram](/kitten-or-bear-classifier/metrics/figures/pipeline.png)
+![Pipeline diagram](metrics/figures/pipeline.png)
 
 
 ## Kitten vs bear classifier
@@ -41,5 +41,5 @@ Installing caffe is quite involved, so you may find it easier to use a
 
 Confusion matrix:
 
-[[13  7]
- [13  4]]
+[[ 3 10]
+ [ 9 15]]

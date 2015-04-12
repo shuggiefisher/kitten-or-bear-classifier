@@ -2,4 +2,4 @@
 
 # The Pipeline
 
-![Pipeline diagram](/kitten-or-bear-classifier/metrics/figures/pipeline.png)
+![Pipeline diagram](metrics/figures/pipeline.png)
