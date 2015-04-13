@@ -60,7 +60,7 @@
     ], 
     "pipelines": {
         "predict": {
-            "emphemeral": true, 
+            "ephemeral": true, 
             "stages": [
                 {
                     "actions": [
@@ -82,6 +82,7 @@
                         "Individual image features", 
                         "kitten-or-bear classifier"
                     ], 
+                    "outputs": [], 
                     "transform": "Multinomial Naive Bayes Classifier"
                 }
             ]
