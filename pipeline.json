@@ -24,6 +24,9 @@
             "data_type": "csv", 
             "local_filename": "labels.csv"
         }, 
+        "Image label": {
+            "data_type": "argument"
+        }, 
         "Image url": {
             "data_type": "argument"
         }, 
@@ -82,7 +85,9 @@
                         "Individual image features", 
                         "kitten-or-bear classifier"
                     ], 
-                    "outputs": [], 
+                    "outputs": [
+                        "Image label"
+                    ], 
                     "transform": "Multinomial Naive Bayes Classifier"
                 }
             ]
@@ -116,7 +121,7 @@
                     "outputs": [
                         "Image features and ground truth labels"
                     ], 
-                    "sha1": "0bcc8061cd7810b877ba1352b199ff661d0f038a", 
+                    "sha1": "403a027472bf9b8e8475ebf7617313d1125575e2", 
                     "transform": "Join image labels and extracted features"
                 }, 
                 {
@@ -129,7 +134,7 @@
                     "outputs": [
                         "Test and Training image features"
                     ], 
-                    "sha1": "04822be1429f6cbf650663e68f8988f8ca6f097a", 
+                    "sha1": "4d012d302d4cf11b8b3db782006cb94c3476f520", 
                     "transform": "Split into test and training set"
                 }, 
                 {
@@ -144,7 +149,7 @@
                         "kitten-or-bear classifier", 
                         "Image classifier test results"
                     ], 
-                    "sha1": "776fed612c98a97b33b464a44cdc2229c9e92cdb", 
+                    "sha1": "ef0dc781f7c8f95a090ee2c2794935e48b2707e0", 
                     "transform": "Multinomial Naive Bayes Classifier"
                 }, 
                 {
@@ -159,7 +164,7 @@
                         "Image classifier confusion graph", 
                         "Image classifier confusion metric"
                     ], 
-                    "sha1": "44aeea5c032f9bbcf00535ddd28c33d46b1cd7ec", 
+                    "sha1": "19dfcc08d958a3b2c2248313cb793a6d84746b18", 
                     "transform": "Confusion matrix"
                 }
             ]

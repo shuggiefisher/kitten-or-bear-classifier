@@ -1,0 +1,30 @@
+digraph G {
+    compound=true;
+    ranksep=1;
+    ratio=compress;
+    size=728;
+    subgraph cluster_1 {
+        style=filled;
+        color=lightgrey;
+        fontname="Helvetica";
+        fontsize=18;
+        "1_Individual image features" [style="filled,rounded",color=green,label="Individual image features",fontname="Verdana",fontsize=12,shape=rectangle];
+        "1_Image url" [style="filled,rounded",color=orange,label="Image url",fontname="Verdana",fontsize=12,shape=rectangle];
+        label = "Neural network pretrained on imagenet";
+    }
+    
+    subgraph cluster_2 {
+        style=filled;
+        color=lightgrey;
+        fontname="Helvetica";
+        fontsize=18;
+        "2_Image label" [style="filled,rounded",color=green,label="Image label",fontname="Verdana",fontsize=12,shape=rectangle];
+        "2_kitten-or-bear classifier" [style="filled,rounded",color=orange,label="kitten-or-bear classifier",fontname="Verdana",fontsize=12,shape=rectangle];"2_Individual image features" [style="filled,rounded",color=orange,label="Individual image features",fontname="Verdana",fontsize=12,shape=rectangle];
+        label = "Multinomial Naive Bayes Classifier";
+    }
+    "1_Individual image features" -> "2_Individual image features" [ltail=cluster_1, lhead=cluster_2];
+    start -> "1_Image url" [lhead=cluster_1];
+    "2_Image label" -> end [ltail=cluster_2];
+    start [shape=Mdiamond];
+    end [shape=Msquare];
+}

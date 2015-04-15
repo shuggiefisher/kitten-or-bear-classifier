@@ -1,10 +1,16 @@
 
 
+# PREDICT Pipeline
+
+![predict pipeline diagram](metrics/figures/predict_pipeline.png)
 
 
-# The Pipeline
+# TRAIN Pipeline
 
-![Pipeline diagram](metrics/figures/pipeline.png)
+![train pipeline diagram](metrics/figures/train_pipeline.png)
+
+
+# Pipeline performance metrics
 
 
 ## Kitten vs bear classifier
@@ -34,12 +40,9 @@ Installing caffe is quite involved, so you may find it easier to use a
 
 
 
-# Pipeline performance metrics
-
-
 ![Confusion Matrix Caption](metrics/figures/image_classifier_confusion.png)
 
 Confusion matrix:
 
-[[ 3 10]
- [ 9 15]]
+[[11  4]
+ [12 10]]
