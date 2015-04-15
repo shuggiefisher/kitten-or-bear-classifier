@@ -83,7 +83,8 @@
                     ], 
                     "inputs": [
                         "Individual image features", 
-                        "kitten-or-bear classifier"
+                        "kitten-or-bear classifier", 
+                        "Image ground truth labels"
                     ], 
                     "outputs": [
                         "Image label"

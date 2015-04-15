@@ -19,7 +19,7 @@ digraph G {
         fontname="Helvetica";
         fontsize=18;
         "2_Image label" [style="filled,rounded",color=green,label="Image label",fontname="Verdana",fontsize=12,shape=rectangle];
-        "2_kitten-or-bear classifier" [style="filled,rounded",color=orange,label="kitten-or-bear classifier",fontname="Verdana",fontsize=12,shape=rectangle];"2_Individual image features" [style="filled,rounded",color=orange,label="Individual image features",fontname="Verdana",fontsize=12,shape=rectangle];
+        "2_Image ground truth labels" [style="filled,rounded",color=orange,label="Image ground truth labels",fontname="Verdana",fontsize=12,shape=rectangle];"2_kitten-or-bear classifier" [style="filled,rounded",color=orange,label="kitten-or-bear classifier",fontname="Verdana",fontsize=12,shape=rectangle];"2_Individual image features" [style="filled,rounded",color=orange,label="Individual image features",fontname="Verdana",fontsize=12,shape=rectangle];
         label = "Multinomial Naive Bayes Classifier";
     }
     "1_Individual image features" -> "2_Individual image features" [ltail=cluster_1, lhead=cluster_2];
